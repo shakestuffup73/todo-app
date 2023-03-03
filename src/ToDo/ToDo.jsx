@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 const ToDo = (props) => {
 
-  const { task, removeToDo, id } = props
+  const { task, removeToDo, updateToDo, id } = props
 
   const [isEditing, setIsEditing] = useState(false)
   
@@ -19,7 +19,8 @@ const ToDo = (props) => {
   function handleUpdate(evt){
     evt.preventDefault()
     // take new task data and pass up to parent
-    
+    updateToDo(id, editTask)
+    setIsEditing(false)
   }
 
   function handleChange(evt){

@@ -4,18 +4,30 @@ import NewToDoForm from "../NewToDoForm/NewToDoForm";
 
 const ToDoList = () => {
 
-  const [todos, setTodos] = useState([])
+  const [toDos, setToDos] = useState([])
 
-  const allTodos = todos.map(todo => {
-    return <ToDo task={todo.task} key={todo.id} id={todo.id} removeToDo={removeToDo} />
+  const allToDos = toDos.map(toDo => {
+    return <ToDo task={toDo.task} key={toDo.id} id={toDo.id} removeToDo={removeToDo} updateToDo={updateToDo} />
   })
 
   function createToDo(newToDo){
-    setTodos([...todos, newToDo])
+    setToDos([...toDos, newToDo])
   }
 
   function removeToDo(id){
-    setTodos(todos.filter(todo => todo.id !== id))
+    setToDos(toDos.filter(toDo => toDo.id !== id))
+  }
+
+  function updateToDo(id, updatedTask){
+    const updatedToDos = toDos.map(toDo => {
+      if(toDo.id === id){
+        return {...toDo, task: updatedTask}
+      }
+      else {
+        return toDo
+      }
+    })
+    setToDos(updatedToDos)
   }
 
   return ( 
@@ -24,7 +36,7 @@ const ToDoList = () => {
         <h1>To Do List</h1>
         <NewToDoForm createToDo={createToDo}/>
         <ul>
-          {allTodos}
+          {allToDos}
         </ul>
       </div>
     </>
