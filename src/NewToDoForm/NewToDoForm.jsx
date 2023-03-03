@@ -1,7 +1,8 @@
 import { useState } from "react"
 import {v4 as uuidv4 } from 'uuid'
+import './NewToDoForm.css'
 
-const NewToDoForm = (props) => {
+const NewtoDoForm = (props) => {
 
   const { createToDo } = props
 
@@ -13,14 +14,14 @@ const NewToDoForm = (props) => {
 
   function handleSubmit(evt){
     evt.preventDefault()
-    const newToDo = {...task, id: uuidv4()}
-    createToDo(newToDo)
+    const newtoDo = {...task, id: uuidv4()}
+    createToDo(newtoDo)
     setTask({task: '', id: ''})
   }
 
   return ( 
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <form className='NewTodoForm' action="" onSubmit={handleSubmit}>
         <label htmlFor="task"> New To Do </label>
         <input 
           type="text"
@@ -36,6 +37,6 @@ const NewToDoForm = (props) => {
   );
 }
 
-export default NewToDoForm;
+export default NewtoDoForm;
 
 

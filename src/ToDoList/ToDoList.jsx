@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ToDo from "../ToDo/ToDo";
+import ToDo from "../ToDo/ToDo.jsx";
 import NewToDoForm from "../NewToDoForm/NewToDoForm";
 
 const ToDoList = () => {
@@ -7,7 +7,18 @@ const ToDoList = () => {
   const [toDos, setToDos] = useState([])
 
   const allToDos = toDos.map(toDo => {
-    return <ToDo task={toDo.task} key={toDo.id} id={toDo.id} removeToDo={removeToDo} updateToDo={updateToDo} />
+    return (
+      <ToDo 
+        task={toDo.task} 
+        key={toDo.id} 
+        id={toDo.id} 
+        removeToDo={removeToDo} 
+        updateToDo={updateToDo}
+        completed={toDo.completed} 
+        toggleCompletion={toggleCompletion} 
+        className='To do'
+      />
+    )
   })
 
   function createToDo(newToDo){
@@ -26,6 +37,16 @@ const ToDoList = () => {
       else {
         return toDo
       }
+    })
+    setToDos(updatedToDos)
+  }
+
+  function toggleCompletion(id){
+    const updatedToDos = toDos.map(toDo => {
+      if(toDo.id === id){
+        return {...toDo, completed: !toDo.completed}
+      }
+      return toDo
     })
     setToDos(updatedToDos)
   }
