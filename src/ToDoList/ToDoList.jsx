@@ -7,11 +7,15 @@ const ToDoList = () => {
   const [todos, setTodos] = useState([])
 
   const allTodos = todos.map(todo => {
-    return <ToDo task={todo.task} key={todo.id} />
+    return <ToDo task={todo.task} key={todo.id} id={todo.id} removeToDo={removeToDo} />
   })
 
   function createToDo(newToDo){
     setTodos([...todos, newToDo])
+  }
+
+  function removeToDo(id){
+    setTodos(todos.filter(todo => todo.id !== id))
   }
 
   return ( 
